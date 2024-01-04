@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
-    public gameOver GameOverScreen;
+    public GameManagerScript gameManager;
     public Camera playerCamera;
     public float walkSpeed = 6f;
     public float runSpeed = 12f;
@@ -18,13 +18,13 @@ public class Player : MonoBehaviour
     public float crouchHeight = 1f;
     public float crouchSpeed = 3f;
     public TextMeshProUGUI pointsText;
-    int maxPlatform=0;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
     private CharacterController characterController;
 
     private bool canMove = true;
 
+    private bool timeover;
     public Animator playerAnimator;
     public Transform playerTrans;
     public int points;
@@ -106,8 +106,10 @@ public class Player : MonoBehaviour
         {
             RemainingTime -= Time.deltaTime;
         }
-        else if(RemainingTime<1)
+        else if(RemainingTime<1 && !timeover)
         {
+            timeover=true;
+            gameManager.gameOver();
             RemainingTime = 0;
             timerText.color = Color.red;
         }
@@ -128,8 +130,4 @@ public class Player : MonoBehaviour
             pointsText.text = "Points: "+ points.ToString();
         }
     }
-
-    public void GameOver(){
-        GameOverScreen.Setup(maxPlatform);
-    } 
 }
