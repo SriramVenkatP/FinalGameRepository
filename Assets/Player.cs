@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
         else if(RemainingTime<1 && !timeover)
         {
             timeover=true;
+            gameObject.SetActive(false);
             gameManager.gameOver();
             RemainingTime = 0;
             timerText.color = Color.red;
