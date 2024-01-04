@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
-    public gameOverScreen GameOverScreen;
+    public gameOver GameOverScreen;
     public Camera playerCamera;
     public float walkSpeed = 6f;
     public float runSpeed = 12f;
